@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const Client = require('../bin/apollo/client');
+const Client = require('./client');
 // const queries = require('../graphql/queries');
 // const gql = require('graphql-tag');
 // const decoder = require('../lib/decoder');
