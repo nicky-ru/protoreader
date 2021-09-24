@@ -7,11 +7,10 @@ const deviceRecords = queries.deviceRecords;
 const gql = require('graphql-tag');
 const decoder = require('../middleware/decoder');
 
-// res.set('Access-Control-Allow-Origin', '*');
-
 exports.devices = async (req, res, next) => {
     console.log("querying devices");
     const queryResult = await Client.query({query: gql(getDevices)});
+    res.set('Access-Control-Allow-Origin', '*');
     res.json(queryResult.data.devices);
 }
 
@@ -20,5 +19,6 @@ exports.deviceRecords = async (req, res, next) => {
     const imei = req.params.imei;
     const queryResult = await Client.query({query: gql(deviceRecords), variables: {imei: imei}});
     const decodedTelemetry = decoder.decodeTelemetry(queryResult.data.deviceRecords);
+    res.set('Access-Control-Allow-Origin', '*');
     res.json(decodedTelemetry);
 }
