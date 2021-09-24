@@ -8,12 +8,14 @@ const gql = require('graphql-tag');
 const TRUSTREAM_SUBGRAPH = "http://subgraph.iott.network:8000/subgraphs/name/iotex/pebble-subgraph";
 
 // Create the GraphQL client
-const Client = new ApolloClient({
-    link: createHttpLink({
-        uri: TRUSTREAM_SUBGRAPH,
-        fetch: crossFetch
-    }),
-    cache: new InMemoryCache()
-});
+// const Client = new ApolloClient({
+//     link: createHttpLink({
+//         uri: TRUSTREAM_SUBGRAPH,
+//         fetch: crossFetch
+//     }),
+//     cache: new InMemoryCache()
+// });
+
+const Client = 500;
 
 module.exports = exports = Client;
