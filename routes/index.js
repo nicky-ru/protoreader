@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
-// const Client = require('../apollo/client');
-// const queries = require('../graphql/queries');
-// const gql = require('graphql-tag');
+const Client = require('./client');
+const queries = require('./queries');
+const getDevices = queries.getDevices;
+const gql = require('graphql-tag');
+
 // const decoder = require('../lib/decoder');
 
 // res.set('Access-Control-Allow-Origin', '*');
@@ -14,9 +16,8 @@ router.get('/', function(req, res, next) {
 
 router.get('/api/devices', async function (req, res, next) {
   console.log("querying devices");
-  // const queryResult = await Client.query({query: gql(queries.getDevices)});
-  // res.json(queryResult.data.devices);
-  res.json({"data":"data"})
+  const queryResult = await Client.query({query: gql(getDevices)});
+  res.json(queryResult.data.devices);
 });
 
 router.get('/api/devices/:imei', async function (req, res, next) {
