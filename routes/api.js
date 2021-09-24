@@ -1,5 +1,4 @@
 'use strict';
-const express = require('express');
 const Client = require('../middleware/client');
 const queries = require('../middleware/graphql/queries');
 const getDevices = queries.getDevices;
