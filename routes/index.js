@@ -7,20 +7,21 @@ const gql = require('graphql-tag');
 
 // const decoder = require('../lib/decoder');
 
-// res.set('Access-Control-Allow-Origin', '*');
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  res.set('Access-Control-Allow-Origin', '*');
   res.render('index', { title: 'Express' });
 });
 
 router.get('/api/devices', async function (req, res, next) {
+  res.set('Access-Control-Allow-Origin', '*');
   console.log("querying devices");
   const queryResult = await Client.query({query: gql(getDevices)});
   res.json(queryResult.data.devices);
 });
 
 router.get('/api/devices/:imei', async function (req, res, next) {
+  res.set('Access-Control-Allow-Origin', '*');
   console.log("querying device records");
   // const imei = req.params.imei;
   // const queryResult = await Client.query({
