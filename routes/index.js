@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-const Client = require('../apollo/client');
-const queries = require('../graphql/queries');
-const gql = require('graphql-tag');
-const decoder = require('../lib/decoder');
+// const Client = require('../apollo/client');
+// const queries = require('../graphql/queries');
+// const gql = require('graphql-tag');
+// const decoder = require('../lib/decoder');
 
 // res.set('Access-Control-Allow-Origin', '*');
 
