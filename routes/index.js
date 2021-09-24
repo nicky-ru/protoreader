@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-const Client = require('./client');
+// const Client = require('./client');
 const queries = require('./queries');
 const getDevices = queries.getDevices;
 const gql = require('graphql-tag');
