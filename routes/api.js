@@ -14,15 +14,11 @@ exports.devices = async (req, res, next) => {
 }
 
 exports.deviceRecords = async (req, res, next) => {
-    const dataPointsMax = 50;
     console.log("querying device records");
     const imei = req.params.imei;
     const queryResult = await Client.query({query: gql(deviceRecords), variables: {imei: imei}});
     let decodedTelemetry = decoder.decodeTelemetry(queryResult.data.deviceRecords);
-    if (decodedTelemetry.length > dataPointsMax) {
-        const length = decodedTelemetry.length;
-        decodedTelemetry = decodedTelemetry.slice(length - dataPointsMax, length);
-    }
     res.set('Access-Control-Allow-Origin', '*');
+    res.set('Cache-control', 'no-store')
     res.json(decodedTelemetry);
 }
