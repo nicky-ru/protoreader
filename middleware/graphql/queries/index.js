@@ -29,7 +29,7 @@ const getDevices = /* Graphql */ `
 
 const deviceRecords = /* Graphql */ `
   query records($imei: String!) {
-    deviceRecords(order: { desc: timestamp } limit: 20 where: { imei: $imei }) {
+    deviceRecords(order: { desc: timestamp }, first: 20, where: { imei: $imei }) {
       raw # Protobuf encoded sensors values
       imei
       signature
