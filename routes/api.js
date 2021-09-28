@@ -19,6 +19,6 @@ exports.deviceRecords = async (req, res, next) => {
     const queryResult = await Client.query({query: gql(deviceRecords), variables: {imei: imei}});
     let decodedTelemetry = decoder.decodeTelemetry(queryResult.data.deviceRecords);
     res.set('Access-Control-Allow-Origin', '*');
-    res.set('Cache-control', 'no-store')
-    res.json(decodedTelemetry);
+    res.set('Cache-control', 'no-store');
+    res.json({"decoded": decodedTelemetry, "encoded": queryResult.data.deviceRecords});
 }
