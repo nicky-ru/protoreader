@@ -3,8 +3,18 @@ const Client = require('../middleware/client');
 const queries = require('../middleware/graphql/queries');
 const getDevices = queries.getDevices;
 const deviceRecords = queries.deviceRecords;
+const getMyDevices = queries.getMyDevices;
 const gql = require('graphql-tag');
 const decoder = require('../middleware/decoder');
+
+exports.myDevices = async (req, res, next) => {
+    console.log("querying devices");
+    const owner = req.params.owner;
+    const queryResult = await Client.query({query: gql(getMyDevices), variables: {owner: owner}});
+    res.set('Access-Control-Allow-Origin', '*');
+    res.set('Cache-control', 'no-store');
+    res.json(queryResult.data.devices);
+}
 
 exports.devices = async (req, res, next) => {
     console.log("querying devices");

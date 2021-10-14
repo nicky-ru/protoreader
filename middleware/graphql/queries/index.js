@@ -27,9 +27,20 @@ const getDevices = /* Graphql */ `
   }
 `
 
+const getMyDevices = /* Graphql */ `
+  query devices($owner: String!) {
+    devices(where: { owner: $owner }) {
+      id
+      name
+      address
+      owner
+    }
+  }
+`
+
 const deviceRecords = /* Graphql */ `
   query records($imei: String!) {
-    deviceRecords(order: { desc: timestamp }, first: 20, where: { imei: $imei }) {
+    deviceRecords(orderBy: timestamp, orderDirection:desc, first: 20, where: { imei: $imei }) {
       raw # Protobuf encoded sensors values
       imei
       signature
@@ -41,5 +52,6 @@ const deviceRecords = /* Graphql */ `
 module.exports = {
     getApps: getApps,
     getDevices: getDevices,
-    deviceRecords: deviceRecords
+    deviceRecords: deviceRecords,
+    getMyDevices: getMyDevices
 }

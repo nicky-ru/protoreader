@@ -19,6 +19,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/api/my-devices/:owner', api.myDevices);
 app.use('/api/devices/:imei', api.deviceRecords);
 app.use('/api/devices', api.devices);
 
